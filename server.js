@@ -9,13 +9,13 @@ let orders = [{id:1, orderName:"samsung", price:25000, user:"rajesh"},{id:2, ord
 
 // To get the all Users
 app.get('/users', (req,res)=>{
-    res.send(JSON.stringify(users))
+    res.json(users)
 })
 
 // To Create a new User
 app.post('/user',(req,res)=>{
     users.push(req.body)
-    res.send(JSON.stringify(users))
+    res.json(users)
 })
 
 // To delete a user
@@ -23,7 +23,7 @@ app.delete('/user/:id',(req,res)=>{
     var data = req.params.id;
     const usersData = users.findIndex(item=>item.id == data)
     users.splice(usersData,1)
-    res.send('Delete Success')
+    res.json('Delete Success')
 })
 
 // To Update the User Information
@@ -31,7 +31,7 @@ app.put('/user/:id',(req,res)=>{
     var data = req.params.id;
     const usersData = users.findIndex(item=>item.id == data);
     users[usersData].name = req.body.name
-    res.json({message: "update success"})
+    res.send({message: "update success"})
 
 })
 
@@ -40,13 +40,13 @@ app.put('/user/:id',(req,res)=>{
 
 // To Get the all product Information
 app.get("/products",(req,res)=>{
-    res.send(products)
+    res.json(products)
 })
 
 // To create a new product
 app.post("/product",(req,res)=>{
     products.push(req.body)
-    res.send(JSON.stringify(products))
+    res.json(products)
 })
 
 // To delete a product
@@ -54,7 +54,7 @@ app.delete('/product/:id',(req,res)=>{
     var data = req.params.id;
     const productData = products.findIndex(item=>item.id == data)
     products.splice(productData,1)
-    res.send('Delete Success')
+    res.json('Delete Success')
 
 })
 
@@ -63,7 +63,7 @@ app.put('/product/:id',(req,res)=>{
     var data = req.params.id;
     const productsData = products.findIndex(item=>item.id == data)
     products[productsData].productName = req.body.productName
-    res.send({message: "update success"})
+    res.json({message: "update success"})
 
 })
 
@@ -71,13 +71,13 @@ app.put('/product/:id',(req,res)=>{
 
 //To get all the orders
 app.get("/orders",(req,res)=>{
-    res.send(orders)
+    res.json(orders)
 })
 
 // To create a new order
 app.post("/order",(req,res)=>{
     orders.push(req.body)
-    res.send(JSON.stringify(orders))
+    res.json(orders)
 })
 
 // To delete a order
@@ -85,7 +85,7 @@ app.delete('/order/:id',(req,res)=>{
     var data = req.params.id;
     const ordersData = orders.findIndex(item=>item.id == data)
     orders.splice(ordersData,1)
-    res.send('order Delete Success')
+    res.json('order Delete Success')
 
 })
 
@@ -94,9 +94,9 @@ app.put('/order/:id',(req,res)=>{
     var data = req.params.id;
     const ordersData = orders.findIndex(item=>item.id == data)
     orders[ordersData].orderName = req.body.orderName
-    res.send({message: "update success"})
+    res.json({message: "update success"})
 
 })
 
 
-app.listen(5000);
+app.listen(process.env.PORT || 5000);
